@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fff.rpghg.Scene2controleur">
    <children>
       <Label fx:id="namelabel1" alignment="CENTER" contentDisplay="CENTER" prefHeight="118.0" prefWidth="594.0" text="nb de joueur" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
@@ -40,7 +39,7 @@
             <Insets top="70.0" />
          </StackPane.margin>
       </Label>
-      <Label fx:id="namelabel2" prefHeight="43.0" prefWidth="403.0">
+      <Label fx:id="namelabel2" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="403.0" textAlignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>

@@ -1,15 +1,19 @@
 package fff.rpghg;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import projetrpg3000.Combatant;
-import projetrpg3000.Game;
-import projetrpg3000.Grievous;
-import projetrpg3000.Healer;
+import javafx.stage.Stage;
+import projetrpg3000.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Scene4controleur {
@@ -25,6 +29,7 @@ public class Scene4controleur {
      Label action;
     @FXML
     ChoiceBox<String> choiceBoxSoin =new ChoiceBox<>();
+    Scene scene;
 
 
 
@@ -33,9 +38,9 @@ public class Scene4controleur {
     Game game=new Game();
     ArrayList<Grievous> enemie =new ArrayList<>();
     ArrayList<String> classeSoin=new ArrayList<>();
-    ArrayList<Combatant> player=new ArrayList<>();
+    ArrayList<Hero> player=new ArrayList<>();
     ArrayList<String> classe =new ArrayList<>();
-       public void boss(ArrayList<Combatant>Player){
+       public void boss(ArrayList<Hero>Player){
            valider.setVisible(false);
            choseboxAction.setVisible(false);
            choiceBoxSoin.setVisible(false);
@@ -116,5 +121,13 @@ public void ButtonV(Event event){
             case"Observer": enemie.get(0).Setobserver(); break;
         }
 
+    }
+    public void retour(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        stage1.setScene(scene);
+        stage1.show();
     }
 }

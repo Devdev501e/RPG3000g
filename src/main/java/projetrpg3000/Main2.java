@@ -13,11 +13,11 @@ public class Main2 {
         Scanner sc = new Scanner(System.in);
         int z=0;
         Random rand = new Random();
-        ArrayList<Combatant> Enemy = new ArrayList<>();
+        ArrayList<Combatant> enemy = new ArrayList<>();
         Game game = new Game();
-        int number = game.choiceperso();
+        int number = game.choicePerso();
 
-        ArrayList<Combatant> Player = game.JoueurClasse(number);
+        ArrayList<Hero> Player = game.joueurClasse(number);
         int t = rand.nextInt(2);
         for (int p = 1; p < 6; p++) {
             Consumable lembas = Food.creatLembas();
@@ -26,21 +26,21 @@ public class Main2 {
                 game.améliorations(Player, potion, lembas);
             }
 
-            if (Enemy.size() == 0) {
-                Enemy = game.Enemycréation(Player, p);
+            if (enemy.size() == 0) {
+                enemy = game.enemyCréation(Player, p);
 
             } else if (Player.size() == 0) {
                 break;
             }
 
-        while (Enemy.size() != 0 && Player.size() != 0) {
-            for (Combatant combatant : Player) {combatant.setFalsebolean();}
+        while (enemy.size() != 0 && Player.size() != 0) {
+            for (Hero combatant : Player) {combatant.setFalsebolean();}
             for (int i = 0; i < Player.size(); i++) {
                 if (t == 0  ) {
-                    game.Joueurplay( Player, Enemy, potion, lembas);
+                    game.Joueurplay( Player, enemy, potion, lembas);
                     t=1;
-                }else if(t==1 && Enemy.size()!=0 &&Player.size()!=0){
-                    game.enemieplay(z,Player,Enemy);
+                }else if(t==1 && enemy.size()!=0 &&Player.size()!=0){
+                    game.enemieplay(z,Player,enemy);
                     t=0;
                     i--;
                 }
@@ -51,8 +51,9 @@ public class Main2 {
         if (Player.size()==0){
             System.out.println("tas perdu lol");
 
-        }else if(Enemy.size()==0){
+        }else if(enemy.size()==0){
             System.out.println("tas gagner lol");
         }
 }
+
 }

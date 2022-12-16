@@ -6,7 +6,7 @@ public class Warrior extends Hero{
         this.Bvie=Bvie;
         this.Bresistance=Bressistance;
         this.Nom=Nom;
-        this.Bdegats=Bdegats;
+        this.bDegats=Bdegats;
         this.h=h;
 
 
@@ -16,12 +16,23 @@ public class Warrior extends Hero{
     public int attaque1(){
         Item arc = Item.Createarc();
         System.out.println("Vous avez utiliser " +arc.getItemNom());
-        return arc.getBitem()+Bdegats;
+        return arc.getBitem()+bDegats;
 
     }
+
+    @Override
+    public String defendre() {
+        {
+            this.Bresistance = Math.min(this.Bresistance + 5, maxRessistance);
+            this.bDegats+=1;
+            System.out.println("Vous avez augmenter votre barre de resistance 5 et votre dégats de 2");
+            return " Votre  resistance a augmenter de +5\n et votre dégats de +1 ";
+        }
+    }
+
     @Override
     public String stat1() {
-        return Nom+"\n(Warrior)"+"\nVIE = "+Bvie+"\nResistance = "+Bresistance+"\nDégâts = "+Bdegats;
+        return Nom+"\n(Warrior)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts = "+bDegats;
     }
     public void amélioration(){
 

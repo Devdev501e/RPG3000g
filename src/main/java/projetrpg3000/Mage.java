@@ -6,7 +6,7 @@ public class Mage extends SpellCaster {
 
         this.Bvie=Bvie;
         this.Bresistance=Bressistance;
-        this.Bdegats=Bdegats;
+        this.bDegats=Bdegats;
         this.Bprixmana=Bprixmana;
         this.Bmagie=Bmagie;
         this.Nom=Nom;
@@ -20,16 +20,17 @@ public class Mage extends SpellCaster {
         if (Bmagie-Bmagie >=0 ){
             this.Bmagie-=Bprixmana;
             System.out.println("Votre barre de magie a dimunuer");
-            return this.Bdegats;}
+            return this.bDegats;}
         else{
             return 0;}
     }
 
+
+
     @Override
     public String stat1() {
-        return Nom+"\n(Mage)"+"\nVIE = "+Bvie+"\nResistance = "+Bresistance+"\nDégâts"+Bdegats+"\nBarre de magie"+Bdegats;
+        return Nom+"\n(Mage)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts"+bDegats+"\nBarre de magie"+bDegats;
     }
 
-    public void lol2(){}
 }
 

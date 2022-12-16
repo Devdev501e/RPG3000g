@@ -19,7 +19,7 @@ public class Main {
             System.out.println("entre 1 et 4");
             NJ = Sc.nextInt();
         }
-        ArrayList<Combatant> LPlayer = new ArrayList<>();
+        ArrayList<Hero> LPlayer = new ArrayList<>();
 
 
         Sc.nextLine();
@@ -101,7 +101,7 @@ public class Main {
                                 Lembas.Addnombre();
                                 break;
                             case"DEGATS":
-                                LPlayer.get(w).Degatsam();
+                                LPlayer.get(w).degatsAm();
                                 break;
                             case"RESISTANCE":
                                 LPlayer.get(w).ressistanceam();
@@ -237,7 +237,7 @@ public class Main {
                                                 }
                                                 Sc.nextLine();
 
-                                                if (!LEnemy.get(NE - 1).moinvie(LPlayer.get(y).attaque1(), LEnemy.get(NE-1).getRessistance())) {                //La méthode moinvie() sort un boolean et enlève la vie des enemies
+                                                if (!LEnemy.get(NE - 1).moinVie(LPlayer.get(y).attaque1(), LEnemy.get(NE-1).getRessistance())) {                //La méthode moinvie() sort un boolean et enlève la vie des enemies
 
                                                     l--;
                                                     break;
@@ -337,7 +337,7 @@ public class Main {
                         int Ne = rand.nextInt(LPlayer.size());
                         System.out.println("rentre dans l'ennemie");
                         for(int e=0;e<1;e++){
-                            if (LPlayer.get(Ne).moinvie(LEnemy.get(z).getdegats(),LPlayer.get(Ne).getRessistance())){
+                            if (LPlayer.get(Ne).moinVie(LEnemy.get(z).getDegats(),LPlayer.get(Ne).getRessistance())){
                                 z++;t=0;i--;
                                 if (LPlayer.get(Ne).getVie()<=0){
                                     System.out.println("le joueur "+LPlayer.get(Ne).getNom()+" est mort :(");

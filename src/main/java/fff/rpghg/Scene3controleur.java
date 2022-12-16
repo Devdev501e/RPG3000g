@@ -22,13 +22,13 @@ import java.util.Random;
 import java.util.ResourceBundle;
 public class Scene3controleur implements Initializable {
 
-    ArrayList<Combatant> Player= new ArrayList<>();
+    ArrayList<Hero> Player= new ArrayList<>();
     ArrayList<Combatant> Enemy=new ArrayList<>();
     int E;
     int w;
     int f;
     int z;
-    int d;               //dans amélioration pour choisir les perso
+    int d;               //dans amèlioration pour choisir les perso
     String action;
     String Classe1;
     Stage stage;
@@ -40,7 +40,7 @@ public class Scene3controleur implements Initializable {
     Consumable potion = Potion.creatpotion();
     Random rand =new Random();
 
-    public void displaliste(ArrayList<Combatant> displaliste) {
+    public void displaliste(ArrayList<Hero> displaliste) {
         int k= rand.nextInt(2);
         if(k==0){}
         choiceboxamèlioration.setVisible(false);
@@ -51,7 +51,7 @@ public class Scene3controleur implements Initializable {
         choiceboxEnemy.setVisible(false);
         Player = displaliste;
         if(Enemy.size()==0 && Player.size()!=0){
-            Enemy=game.Enemycréation(Player,E);
+            Enemy=game.enemyCréation(Player,E);
             for (int i=0;i<Enemy.size();i++){
                 enemynom.add(String.valueOf((Enemy.get(i))));
             }E++;}
@@ -219,10 +219,11 @@ public class Scene3controleur implements Initializable {
         stage1.show();
     }
     public void button5(ActionEvent event)throws IOException{
-
+       statperso.setText("");
        Statenemie.setText("");
        Boolean marche=false;
        aplied.setVisible(false);
+
 
           action=choiceboxAction.getValue();
           choiceboxEnemy.setVisible(false);
@@ -238,7 +239,7 @@ public class Scene3controleur implements Initializable {
               }
                   break;
               case("Soigner"):if(game.Soigner(Player,w,f)){marche=true;Statenemie.setText("Vous avez soigné :"+Player.get(f).getNom());break;}else{marche=false;break;}
-              case("Défendre"):game.Défendre(Player,w);marche=true;Statenemie.setText(" Votre barre de resistance à augmenter de 7 ");break;
+              case("Défendre"):Statenemie.setText(game.Défendre(Player,w));marche=true;break;
               case("Manger"):if(game.Manger(Player,w,lembas)){marche=true;break;}else{marche=false;Statenemie.setText("Vous ne pouvez pas manger");break;}
               case("Boire"):if(game.Boir(Player,w,potion)){marche=true;break;}else{marche=false;Statenemie.setText("Vous ne pouvez pas boire");break;}
           }
@@ -257,13 +258,13 @@ public class Scene3controleur implements Initializable {
 
             choiceboxAm.setVisible(false);
             choiceboxPersonage.setDisable(true);
-            for (Combatant combatant : Player) {combatant.setFalsebolean();}
+            for (Hero combatant : Player) {combatant.setFalsebolean();}
             choiceboxamèlioration.setVisible(true);
             for (int i=0;i<Player.size();i++){if(!Player.get(i).getbolean()){jo.add(Player.get(i).getNom());}}
             choiceboxamèlioration.getItems().clear();
             choiceboxamèlioration.getItems().addAll(jo);
             choiceboxamèlioration.setOnAction(this::actionAm);}
-        if(Enemy.size()==0 && E<1){Enemy=game.Enemycréation(Player,E);E++;partieN.setText("Partie n° = "+E );}    //codes enemies //nombre de partie
+        if(Enemy.size()==0 && E<1){Enemy=game.enemyCréation(Player,E);E++;partieN.setText("Partie n° "+E);}    //codes enemies //nombre de partie
         if(Enemy.size()==0){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene4.fxml"));
             root = loader.load();
@@ -271,12 +272,13 @@ public class Scene3controleur implements Initializable {
             scene4controleur.boss(Player);
             stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
             scene= new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             stage.setScene(scene);
             stage.show();}    //code switch to final bosse
 
           Classe.clear();
           for (int i=0;i<Player.size();i++){if(!Player.get(i).getbolean()){Classe.add(Player.get(i).getNom());}}//premier choice box
-          if (Classe.size()==0){for (Combatant combatant : Player) {combatant.setFalsebolean();} for (int i=0;i<Player.size();i++){Classe.add(Player.get(i).getNom());}}
+          if (Classe.size()==0){for (Hero combatant : Player) {combatant.setFalsebolean();} for (int i=0;i<Player.size();i++){Classe.add(Player.get(i).getNom());}}
 
           enemynom.clear();
           for (int i=0;i<Enemy.size();i++){enemynom.add(String.valueOf((Enemy.get(i))));}  //troisième choice box

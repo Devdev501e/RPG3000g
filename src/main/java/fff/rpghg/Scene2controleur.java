@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class Scene2controleur implements Initializable {
     int i;
-    ArrayList<Combatant> Player = new ArrayList<>();
+    ArrayList<Hero> player = new ArrayList<>();
     @FXML
     public Label myLabel;
     @FXML
@@ -41,7 +41,7 @@ public class Scene2controleur implements Initializable {
     Parent root;
 
     Game game;
-    ArrayList<Combatant> Enemy=new ArrayList<>();
+
 
     public int displaunumber(String number) {
         //bouton de validation du nombre
@@ -53,9 +53,7 @@ public class Scene2controleur implements Initializable {
         return i;
     }
 
-      public ArrayList<Combatant> lol(ArrayList<Combatant> lol){
-        return lol;
-      }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         myChoiceBox2.getItems().addAll(NP2);//chose box
@@ -79,13 +77,13 @@ public class Scene2controleur implements Initializable {
 
         nom= NOMCL.getText().trim();
         NOMCL.clear();
-        if (Player.size() == i ) {
+        if (player.size() == i ) {
 
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene3.fxml"));
             root= loader.load();
             Scene3controleur scene3controleur=loader.getController();
-            scene3controleur.displaliste(Player);
+            scene3controleur.displaliste(player);
             stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
             scene= new Scene(root);
             scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -97,15 +95,15 @@ public class Scene2controleur implements Initializable {
 
     } else if (nom.equals("")) {
             namelabel3.setText("choisisez un nom!");
-        } else if  (Player.size() != i && !classe.equals("")) {
+        } else if  (player.size() != i && !classe.equals("")) {
         switch (classe){
-            case "Hunter": Hunter hunter=new Hunter(57,1,1,10,null,false);hunter.setNom(nom);Player.add(hunter);break;
-            case "Warrior": Warrior warrior=new Warrior(98,1,10,null,false);warrior.setNom(nom);Player.add(warrior); break;
-            case "Healer": Healer healer=new Healer(65,1,10,1,10,null,false);healer.setNom(nom);Player.add(healer);break;
-            case "Mage": Mage mage =new Mage(100,1,10,1,1,null,false);mage.setNom(nom);Player.add(mage);break;
+            case "Hunter": Hunter hunter=new Hunter(57,1,1,10,null,false);hunter.setNom(nom);player.add(hunter);break;
+            case "Warrior": Warrior warrior=new Warrior(98,1,10,null,false);warrior.setNom(nom);player.add(warrior); break;
+            case "Healer": Healer healer=new Healer(65,1,10,1,10,null,false);healer.setNom(nom);player.add(healer);break;
+            case "Mage": Mage mage =new Mage(60,1,10,1,1,null,false);mage.setNom(nom);player.add(mage);break;
         }
-        }namelabel2.setText("Vous avez "+Player.size()+"joueur choisi");
-        System.out.println(Player.get(0).getNom());
+        }namelabel2.setText("Vous avez "+player.size()+" joueurs choisi");
+        System.out.println(player.get(0).getNom());
          myChoiceBox2.setValue("");
     }
     public void retour(ActionEvent event) throws IOException {

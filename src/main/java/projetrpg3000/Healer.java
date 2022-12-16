@@ -7,7 +7,7 @@ public class Healer extends SpellCaster{
 
         this.Bvie=Bvie;
         this.Bresistance=Bressistance;
-        this.Bdegats=Bdegats;
+        this.bDegats=Bdegats;
         this.Bprixmana=Bprixmana;
         this.Bmagie=Bmagie;
         this.Nom=Nom;
@@ -18,13 +18,13 @@ public class Healer extends SpellCaster{
     @Override
     public int attaque1(){
         if (Bmagie-Bprixmana >=0 ){
-            return this.Bdegats;
+            return this.bDegats;
 
         }else{ return 0;}
     }
 
     @Override
     public String stat1() {
-        return Nom+"\n(Healer)"+"\nVIE = "+Bvie+"\nResistance = "+Bresistance+"\nDégâts = "+Bdegats+"\nBarre de magie = "+Bmagie;
+        return Nom+"\n(Healer)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts = "+bDegats+"\nBarre de magie = "+Bmagie;
     }
 }
