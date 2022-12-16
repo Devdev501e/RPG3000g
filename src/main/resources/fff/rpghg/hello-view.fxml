@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="fff.rpghg.Controlleur">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ImageView fx:id="myimageview" fitHeight="332.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+         <image>
+            <Image url="@Image/RPG_3000_Title.jpg" />
+         </image>
+         <GridPane.margin>
+            <Insets right="10.0" top="15.0" />
+         </GridPane.margin>
+      </ImageView>
+      <Button mnemonicParsing="false" onAction="#instruction" prefHeight="31.0" prefWidth="278.0" text="instruction" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets top="150.0" />
+         </GridPane.margin>
+      </Button>
+      <Label prefHeight="39.0" prefWidth="117.0" text="Designer : Starman" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label prefHeight="39.0" prefWidth="380.0" text="Concepteur et codeur : Devendran " GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Button mnemonicParsing="false" onAction="#swixhToScene1" prefHeight="30.0" prefWidth="278.0" text="START" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <padding>
+            <Insets bottom="1.0" left="23.0" right="23.0" top="1.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets bottom="60.0" top="140.0" />
+         </GridPane.margin>
+      </Button>
+   </children>
+</GridPane>
