@@ -2,7 +2,7 @@ package projetrpg3000;
 
 public abstract class Hero extends Combatant {
     private Item I;
-
+    int maxDegats=30;
     public boolean soigner(int attaque1) {
         if (Bvie < maxPointsddevie) {
             this.Bvie = Math.min(this.Bvie + attaque1,
@@ -19,7 +19,7 @@ public abstract class Hero extends Combatant {
     public boolean nourriture(Item n) {
         if (Bvie < maxPointsddevie) {
 
-            this.Bvie += Math.min(this.Bvie + n.getBitem(),
+            this.Bvie = Math.min(this.Bvie + n.getBitem(),
                     maxPointsddevie);
             System.out.println("Vous avez manger un" + n.getItemNom() + "votre vie a augmenter de " + n.getBitem());
             return true;
@@ -65,6 +65,7 @@ public abstract class Hero extends Combatant {
     }
 
     public void degatsAm() {
-        this.bDegats = Math.min(this.bDegats + 15, maxRessistance);
+        if (this.bDegats<maxDegats){
+        this.bDegats = Math.min(this.bDegats + 5, maxDegats);}
     }
 }

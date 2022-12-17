@@ -6,13 +6,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fff.rpghg.Scene2controleur">
    <children>
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#bfbfbf" height="183.0" stroke="BLACK" strokeType="INSIDE" width="175.0" StackPane.alignment="CENTER_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="-70.0" right="40.0" />
+         </StackPane.margin>
+      </Rectangle>
       <Label fx:id="namelabel1" alignment="CENTER" contentDisplay="CENTER" prefHeight="118.0" prefWidth="594.0" text="nb de joueur" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
          <font>
-            <Font size="19.0" />
+            <Font name="Impact" size="19.0" />
          </font>
          <StackPane.margin>
             <Insets bottom="75.0" right="2.0" />
@@ -28,17 +34,6 @@
             <Insets top="150.0" />
          </StackPane.margin>
       </Button>
-      <Label fx:id="myLabel" alignment="CENTER" prefHeight="77.0" prefWidth="600.0" text="classe choisi" StackPane.alignment="TOP_CENTER">
-         <font>
-            <Font size="26.0" />
-         </font>
-         <padding>
-            <Insets bottom="-50.0" />
-         </padding>
-         <StackPane.margin>
-            <Insets top="70.0" />
-         </StackPane.margin>
-      </Label>
       <Label fx:id="namelabel2" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="403.0" textAlignment="CENTER">
          <font>
             <Font size="25.0" />
@@ -47,10 +42,13 @@
             <Insets top="300.0" />
          </StackPane.margin>
       </Label>
-      <Label fx:id="namelabel3" prefHeight="26.0" prefWidth="158.0">
+      <Label fx:id="namelabel3" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="173.0" textFill="RED">
          <StackPane.margin>
-            <Insets right="350.0" top="-30.0" />
+            <Insets right="350.0" top="75.0" />
          </StackPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
       </Label>
       <Button mnemonicParsing="false" onAction="#retour" text="Retour" StackPane.alignment="BOTTOM_LEFT">
          <StackPane.margin>
@@ -62,5 +60,21 @@
             <Insets bottom="-75.0" />
          </StackPane.margin>
       </TextField>
+      <Label fx:id="vieLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="171.0" prefWidth="171.0" textAlignment="CENTER" StackPane.alignment="CENTER_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="-70.0" right="40.0" />
+         </StackPane.margin>
+      </Label>
+      <Label fx:id="myLabel" alignment="CENTER" prefHeight="77.0" prefWidth="600.0" StackPane.alignment="TOP_CENTER">
+         <font>
+            <Font size="26.0" />
+         </font>
+         <padding>
+            <Insets bottom="-50.0" />
+         </padding>
+         <StackPane.margin>
+            <Insets top="50.0" />
+         </StackPane.margin>
+      </Label>
    </children>
 </StackPane>

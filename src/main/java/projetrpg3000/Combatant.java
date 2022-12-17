@@ -3,8 +3,8 @@ package projetrpg3000;
 public abstract class Combatant {
     int Bvie;
     boolean h;
-    int maxPointsddevie = 100;
-    int maxRessistance = 25;
+    int maxPointsddevie = 150;
+    int maxRessistance = 15;
 
     int Bresistance;
     int bDegats;
@@ -25,14 +25,6 @@ public abstract class Combatant {
             return false;
         }
     }
-
-
-
-
- 
-
-
-
 
 
     public int getVie() {

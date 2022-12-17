@@ -18,13 +18,20 @@ public class Grievous extends Enemy{
 
     @Override
     public String stat1() {
-        return null;
+
+        return this.Nom+"\nVIE = "+this.Bvie+"\nResistance = "+this.Bresistance;
     }
 
 
 
 
+    public void Setobserver0(){
+        this.observer=0;
+    }
     public void Setobserver(){
         this.observer+=1;
+    }
+    public int getobserver(){
+       return this.observer;
     }
 }

@@ -12,7 +12,7 @@ public  class CC_7567 extends Enemy {
 
     @Override
     public String stat1() {
-        return "Enemies"+"\nVIE = "+Bvie+"\nRessistance = "+Bresistance+"\nDégats"+bDegats;
+        return "Enemies"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nRessistance = "+Bresistance+"/"+maxRessistance+"\nDégats = "+bDegats;
     }
 
 

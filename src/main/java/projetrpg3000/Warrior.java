@@ -24,7 +24,7 @@ public class Warrior extends Hero{
     public String defendre() {
         {
             this.Bresistance = Math.min(this.Bresistance + 5, maxRessistance);
-            this.bDegats+=1;
+            this.bDegats+=3;
             System.out.println("Vous avez augmenter votre barre de resistance 5 et votre dégats de 2");
             return " Votre  resistance a augmenter de +5\n et votre dégats de +1 ";
         }
@@ -32,7 +32,7 @@ public class Warrior extends Hero{
 
     @Override
     public String stat1() {
-        return Nom+"\n(Warrior)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts = "+bDegats;
+        return Nom+"\n(Warrior)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts = "+bDegats+"\n épée";
     }
     public void amélioration(){
 

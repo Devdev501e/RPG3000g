@@ -29,7 +29,12 @@ public class Scene4controleur {
      Label action;
     @FXML
     ChoiceBox<String> choiceBoxSoin =new ChoiceBox<>();
+    @FXML
+     Label vieBoss;
+    @FXML
+     Label mort;
     Scene scene;
+    boolean marche;
 
 
 
@@ -40,14 +45,25 @@ public class Scene4controleur {
     ArrayList<String> classeSoin=new ArrayList<>();
     ArrayList<Hero> player=new ArrayList<>();
     ArrayList<String> classe =new ArrayList<>();
-       public void boss(ArrayList<Hero>Player){
+    Consumable lembas = Food.creatLembas();
+    Consumable potion = Potion.creatpotion();
+       public void boss(ArrayList<Hero>Player,Consumable lem,Consumable pot){
            valider.setVisible(false);
            choseboxAction.setVisible(false);
            choiceBoxSoin.setVisible(false);
            player=Player;
-           Grievous grievous=new Grievous(1,1,1,"Grievous",0,true);
+           for (int i = 0; i < player.size(); i++) {
+               for (Hero combatant : Player) {
+                   combatant.setFalsebolean();
+               }
+               }
+
+           lembas=lem;
+           potion=pot;
+           Grievous grievous=new Grievous(200,20,15,"Grievous",0,false);
            for (int i=0;i<Player.size();i++){classe.add(Player.get(i).getNom());}
            enemie.add(grievous);
+           vieBoss.setText(enemie.get(0).stat1());
            choseboxPerso.getItems().addAll(classe);
            choseboxPerso.setOnAction(this::Action);
        }
@@ -79,8 +95,8 @@ public void Action2 (Event event){
            if(choseboxAction.getValue()!=null){
                switch (choseboxAction.getValue()){
                    case"Attaquer":break;
-                   case"Manger":break;
-                   case"Boire":action.setText(" pour augmenter la barre de resistance de 7 ");break;
+                   case"Manger":action.setText(" Vous avez "+lembas.getnombre()+" de nourriture ");break;
+                   case"Boire":action.setText(" Vous avez "+potion.getnombre()+" Potion");break;
                    case"Défendre":action.setText(" pour augmenter\n la barre de \nresistance de 7 ");break;
                    case"Soigner":
 
@@ -90,36 +106,119 @@ public void Action2 (Event event){
 
                        valider.setVisible(false);
                        choiceBoxSoin.setVisible(true);
-                       System.out.println("c'est rentre dans soigner");
                        choiceBoxSoin.getItems().addAll(classeSoin);
                        choiceBoxSoin.setOnAction(this::Action3);
                        choiceBoxSoin.setVisible(true);
 
 
                        break;
-                   case"Observer": enemie.get(0).Setobserver(); break;
+                   case"Observer": action.setText("observez l'ennemie pour\n trouver sont point faible "); break;
                }
            }
 
        }
        public void Action3(Event event){
+           valider.setVisible(true);
            if(choiceBoxSoin.getValue()!=null) {
-               emplacement2 = game.listechoseP(player, choiceBoxSoin.getValue());
+              emplacement2=game.listechoseP(player,choiceBoxSoin.getValue());
                if (emplacement2 < player.size())
                    action.setText(player.get(emplacement2).stat1());
            }
        }
-public void ButtonV(Event event){
+public void ButtonV(Event event) throws IOException {
+          action.setText("");
+          valider.setVisible(false);
+          choiceBoxSoin.setVisible(false);
+          choseboxAction.setVisible(false);
 
-           boolean marche =false;
+
+
+
         switch (choseboxAction.getValue()){
-            case"Attaquer":break;
-            case"Manger":break;
-            case"Boire":break;
+            case"Attaquer":if(game.Attaqueboss(enemie,player,emplacement1)){marche=true;}else{marche=false;};break;
+            case"Manger":
+                if (game.Manger(player, emplacement1, lembas)) {
+                    action.setText("Vous avez manger ");
+                    marche = true;
+                    break;
+                } else {
+                    marche = false;
+                    action.setText("Vous ne pouvez pas manger");break;}
+            case"Boire":
+                if (game.Boir(player, emplacement1, potion)) {
+                    action.setText("vous avez augmenter votre vie de"+potion.getBitem()+"\nmais vous avez perdu ");
+                    marche = true;
+                    break;
+                } else {
+                    marche = false;
+                    action.setText("Vous ne pouvez pas boire");
+                    break;
+                }
             case"Défendre": game.Défendre(player,emplacement1);marche=true;action.setText(" Votre barre de\n resistance à augmenter de 7 ");break;
-            case"Soigner": break;
-            case"Observer": enemie.get(0).Setobserver(); break;
+            case"Soigner":
+                if (game.Soigner(player,emplacement1,emplacement2)) {
+                    marche = true;
+                    action.setText("Vous avez soigné :" + player.get(emplacement2).getNom());
+                    break;
+                } else {
+                    marche = false;
+                    action.setText("Vous ne pouvez pas soigner ce joueur");
+                    break;
+                }
+            case"Observer": enemie.get(0).Setobserver();player.get(emplacement1).setruebolean();marche=true; break;
         }
+        if(enemie.get(0).getobserver()==player.size()){
+            if(player.size()>1){
+            enemie.get(0).moinVie(50,enemie.get(0).getRessistance());
+            for (int i = 0; i < player.size(); i++) {
+                player.get(i).soigner(30);
+
+            }}else{enemie.get(0).moinVie(18,enemie.get(0).getRessistance());player.get(emplacement1).soigner(50);}
+            action.setText("Vous avez trouver sont point faible\n et vous avez gagner de la vie");
+            enemie.get(0).Setobserver0();
+        }
+
+        if(enemie.get(0).getVie()<=0){
+            Parent root = FXMLLoader.load(getClass().getResource("Fin.fxml"));
+            Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            stage1.setScene(scene);
+            stage1.show();
+
+        }
+
+
+
+
+    if (marche && enemie.size() != 0 && player.size() != 0) {          //enemie
+        for (int i = 0; i < player.size(); i++) {
+            player.get(i).moinVie(enemie.get(0).getDegats(),player.get(i).getRessistance());
+            marche=false;
+            if(player.get(i).getVie()<=0){
+                mort.setText("Le joueur "+player.get(i).getNom()+"est mort");
+                player.remove(i);
+            }
+        }
+    }
+    vieBoss.setText(enemie.get(0).stat1());
+    classe.clear();
+    for (int i = 0; i < player.size(); i++) {
+        if(!player.get(i).getbolean()){
+            classe.add(player.get(i).getNom());
+        }
+
+    }
+    if (classe.size() == 0) {
+        for (Hero combatant : player) {
+            combatant.setFalsebolean();
+        }
+        for (int i = 0; i < player.size(); i++) {
+            classe.add(player.get(i).getNom());
+        }
+    }
+    choseboxPerso.getItems().clear();
+    choseboxPerso.getItems().addAll(classe);
 
     }
     public void retour(ActionEvent event) throws IOException {

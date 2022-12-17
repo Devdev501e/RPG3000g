@@ -35,7 +35,7 @@ public class Hunter extends Hero{
     @Override
     public String defendre() {
             this.Bresistance = Math.min(this.Bresistance + 5, maxRessistance);
-            this.Flèche+=1;
+            this.Flèche+=3;
         System.out.println("Vous avez augmenter votre barre de resistance 7 \n et vous avez trouver une flèche");
             return "Votre barre de resistance a augmenter de +7\net vous avez trouver une flèche";
 
@@ -47,7 +47,7 @@ public class Hunter extends Hero{
     }
     @Override
     public String stat1() {
-        return Nom+"\n(Hunter)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts = "+bDegats+"\nNombre de flèche = "+Flèche;
+        return Nom+"\n(Hunter)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts = "+bDegats+"\nNombre de flèche = "+Flèche+"\n Arc";
     }
 
 }

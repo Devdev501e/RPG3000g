@@ -1,6 +1,8 @@
 package projetrpg3000;
 
 
+import javafx.scene.control.Label;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -15,14 +17,21 @@ public class Game {
     public int choicePerso() {
 
         System.out.println("Choisissez le nombre de votre équipe entre 1 et 4");
-        int NJ;
+        int NJ=0;
 
-        NJ = sc.nextInt();
 
         while (NJ <= 0 || NJ > 4) {
-            System.out.println("entre 1 et 4");
+
+           try{
             NJ = sc.nextInt();
-            sc.nextLine();
+            if(NJ<=0 ||NJ>4){
+                System.out.println("entre 1 et 4");
+            }
+           }
+           catch (Exception e){
+               System.out.println("un nombre entre 1 et 4");
+               sc.nextLine();
+           }
         }
         sc.nextLine();
         return NJ;
@@ -35,7 +44,7 @@ public class Game {
         ArrayList<Hero> player = new ArrayList<>();
         for (int i = 0; i < NJ; i++) {
 
-            System.out.println("choisissez la classe de vos joueur");
+            System.out.println("choisissez la classe de vos joueur Warrior/Mage/Hunter/Healer");
 
             String ik = sc.nextLine();
 
@@ -85,7 +94,7 @@ public class Game {
         ArrayList<Combatant> Enemy = new ArrayList<>();
         if (P <= 4 && Player.size() != 0) {
             for (int i = 0; i < Player.size(); i++) {
-                CC_7567 cc_7567 = new CC_7567(60, 1, 25);
+                CC_7567 cc_7567 = new CC_7567(20*(P+1), 5*(P+1), 5*(P+1));
                 Enemy.add(cc_7567);
             }
             return Enemy;
@@ -175,7 +184,7 @@ public class Game {
 
         }
     }
-    public int enemyplaynew(int z,ArrayList<Hero> player,ArrayList<Combatant> enemy) {
+    public int enemyplaynew(int z, ArrayList<Hero> player, ArrayList<Combatant> enemy, Label label) {
         if (z >= enemy.size()) {
             z = 0;
         }
@@ -184,8 +193,9 @@ public class Game {
         for (int e = 0; e < 1; e++) {
             if (player.get(Ne).moinVie(enemy.get(z).getDegats(), player.get(Ne).getRessistance())) {
                 z++;
+                label.setText("le joueur " + player.get(Ne).getNom() + " a été attaqué  ");
                 if (player.get(Ne).getVie() <= 0) {
-                    System.out.println("le joueur " + player.get(Ne).getNom() + " est mort :(");
+                    label.setText("le joueur " + player.get(Ne).getNom() + " est mort ");
                     player.remove(Ne);
 
 
@@ -223,7 +233,7 @@ public class Game {
     public void Joueurplay(ArrayList<Hero> player, ArrayList<Combatant> enemy, Consumable potion, Consumable lembas) {
 
         for (int l = 0; l < 1; l++) {
-            System.out.println("choisit ton hero a utilser");
+            System.out.println("choisit ton hero a utilisé");
             String lol;
             lol = sc.nextLine();
 
@@ -246,7 +256,7 @@ public class Game {
 
             } else {
                 if (!player.get(y).getbolean() && player.get(y).getVie() > 0) {
-                    System.out.println("Voulez vous attaquer ou vous Défendre ou manger ?");
+                    System.out.println("Voulez vous Attaquer ou vous Défendre ou Manger ?");
                     String R = sc.nextLine();
 
 
@@ -278,12 +288,12 @@ public class Game {
                                         player.get(y).setruebolean();
                                         break;
                                     } else {
-                                        System.out.println("Vous navez pas assez de magie");
+                                        System.out.println("Vous n'avez pas assez de magie");
                                         l--;
                                     }
                                 }
                             } else {                                                                                                  //code pour les autres hero
-                                System.out.println("choisiser le numero de l'adeversair a attaquer entre 1 et " + enemy.size());
+                                System.out.println("Choisissez le numero de l'adversaire a attaquer entre 1 et " + enemy.size());
 
                                 int NE = sc.nextInt();
                                 while (NE <= 0 || NE > enemy.size()) {
@@ -302,7 +312,7 @@ public class Game {
 
 
                                     if (enemy.get(NE - 1).getVie() <= 0) {                                                             //permet de réduire la taille de la liste de l'ennemie
-                                        System.out.println("Vous avez tuer un enemies ");
+                                        System.out.println("Vous avez tuer un ennemie ");
                                         enemy.remove(NE - 1);
 
 
@@ -322,8 +332,8 @@ public class Game {
                             break;
                         case "Manger":
                             System.out.println("Voulez vous manger un lembas ou boir une potion ");
-                            System.out.println("Le lenbas augmente un peut votre vie alors que la potion augmente grandement votre vie mais diminue votre resistance ");
-                            System.out.println("écrivez 'Manger' pour le Lembas ou 'Boir' pour la potion ");
+                            System.out.println("Le lembas augmente un peut votre vie alors que la potion augmente grandement votre vie mais diminue votre resistance ");
+                            System.out.println("écrivez 'Manger' pour le Lembas ou 'Boire' pour la potion ");
                             String choix2 = sc.nextLine();
                             switch (choix2) {
                                 case "Manger":
@@ -344,7 +354,7 @@ public class Game {
 
                                     break;
 
-                                case "Boir":
+                                case "Boire":
 
                                     if (potion.getnombre() > 0 && player.get(y).potion(potion)) {
 
@@ -354,7 +364,7 @@ public class Game {
                                     } else {
                                         l--;
                                         if (potion.getnombre() == 0) {
-                                            System.out.println("tu as plus de potion");
+                                            System.out.println("tu n'as plus de potion");
                                         }
                                     }
 
@@ -426,11 +436,12 @@ public class Game {
          }else{ return false;}
 
         }
-        public void Ressistance(){
-
+        public void Ressistance(ArrayList<Hero> player,int joueur){
+            player.get(joueur).ressistanceam();
+            player.get(joueur).setruebolean();
         }
         public void Items(int d,ArrayList<Hero> player,Consumable potion, Consumable lembas){ potion.Addnombre(); lembas.Addnombre(); player.get(d).setruebolean();}
-        public void Degats(int d,ArrayList<Hero> player){player.get(d).degatsAm();}
+        public void Degats(int d,ArrayList<Hero> player){player.get(d).degatsAm();player.get(d).setruebolean();}
         public void upgrade(int d ,ArrayList<Hero> player){player.get(d).amélioration();player.get(d).setruebolean();}
 
 
@@ -467,22 +478,32 @@ public class Game {
             return y;}
         else{return enemie.size();}
     }
-    public void bossCombat(ArrayList<Hero>player,ArrayList<Combatant>enemies ){
+    public void bossCombat(ArrayList<Hero>player,ArrayList<Grievous>enemies ){
         if(player.size()!=0 &&enemies.size()!=0){
         for (int i=0;i<player.size();i++){
                  player.get(i).moinVie(enemies.get(0).getDegats(),player.get(i).getRessistance());
 
                  if(player.get(i).getVie()<=0){
-                     System.out.println(enemies.get(0).getNom()+" a tuer" +player.get(i).getNom());
+                     System.out.println(enemies.get(0).getNom()+" a tué" +player.get(i).getNom());
                      player.remove(i);
                  }else{
-                     System.out.println(enemies.get(0).getNom()+" a attaquer" +player.get(i).getNom());
+                     System.out.println(enemies.get(0).getNom()+" a attaqué" +player.get(i).getNom());
                  }
 
         }}
-        if(enemies.get(0).getVie()<=0){
-            enemies.remove(0);
+
+    }
+    public boolean Attaqueboss(ArrayList<Grievous>enemie,ArrayList<Hero> player,int emplacement1){
+        if (enemie.get(0).moinVie(player.get(emplacement1).getDegats(),enemie.get(0).getRessistance())){
+            player.get(emplacement1).setruebolean();
+
+            System.out.println(player.get(emplacement1).getbolean());
+            return true;
         }
+        else {
+            return false;
+        }
+
     }
 
     }

@@ -18,6 +18,7 @@ public class Healer extends SpellCaster{
     @Override
     public int attaque1(){
         if (Bmagie-Bprixmana >=0 ){
+            this.Bmagie-=Bprixmana;
             return this.bDegats;
 
         }else{ return 0;}

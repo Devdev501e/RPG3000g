@@ -17,7 +17,7 @@ public class Mage extends SpellCaster {
     }
     @Override
     public int attaque1(){
-        if (Bmagie-Bmagie >=0 ){
+        if (Bmagie-Bprixmana >=0 ){
             this.Bmagie-=Bprixmana;
             System.out.println("Votre barre de magie a dimunuer");
             return this.bDegats;}
@@ -29,7 +29,7 @@ public class Mage extends SpellCaster {
 
     @Override
     public String stat1() {
-        return Nom+"\n(Mage)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts"+bDegats+"\nBarre de magie"+bDegats;
+        return Nom+"\n(Mage)"+"\nVIE = "+Bvie+"/"+maxPointsddevie+"\nResistance = "+Bresistance+"/"+maxRessistance+"\nDégâts = "+bDegats+"\nBarre de magie = "+Bmagie;
     }
 
 }
