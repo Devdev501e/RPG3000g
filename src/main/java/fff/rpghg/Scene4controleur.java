@@ -167,6 +167,7 @@ public void ButtonV(Event event) throws IOException {
                 }
             case"Observer": enemie.get(0).Setobserver();player.get(emplacement1).setruebolean();marche=true; break;
         }
+
         if(enemie.get(0).getobserver()==player.size()){
             if(player.size()>1){
             enemie.get(0).moinVie(50,enemie.get(0).getRessistance());
@@ -200,6 +201,14 @@ public void ButtonV(Event event) throws IOException {
                 player.remove(i);
             }
         }
+    }
+    if(player.size()==0){
+        Parent root = FXMLLoader.load(getClass().getResource("GameOver.fxml"));
+        Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        stage1.setScene(scene);
+        stage1.show();
     }
     vieBoss.setText(enemie.get(0).stat1());
     classe.clear();

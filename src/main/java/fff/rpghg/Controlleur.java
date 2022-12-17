@@ -42,6 +42,7 @@ public class Controlleur  {
         Parent root = FXMLLoader.load(getClass().getResource("instruction.fxml"));
         stage = (javafx.stage.Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         stage.setScene(scene);
 
         stage.show();

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="fff.rpghg.Controlleur">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fff.rpghg.Controlleur">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -30,12 +30,12 @@
             <Insets top="150.0" />
          </GridPane.margin>
       </Button>
-      <Label prefHeight="39.0" prefWidth="117.0" text="Designer : Starman" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+      <Label prefHeight="39.0" prefWidth="117.0" text="Designer : Star-Man" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="20.0" left="10.0" />
          </GridPane.margin>
       </Label>
-      <Label prefHeight="39.0" prefWidth="380.0" text="Concepteur et codeur : Devendran " GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+      <Label prefHeight="39.0" prefWidth="380.0" text="Concepteur et codeur : Devendran  VIZEARANGAME" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
