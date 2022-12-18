@@ -170,9 +170,9 @@ public void ButtonV(Event event) throws IOException {
 
         if(enemie.get(0).getobserver()==player.size()){
             if(player.size()>1){
-            enemie.get(0).moinVie(50,enemie.get(0).getRessistance());
+            enemie.get(0).moinVie(30,enemie.get(0).getRessistance());
             for (int i = 0; i < player.size(); i++) {
-                player.get(i).soigner(30);
+                player.get(i).soigner(10);
 
             }}else{enemie.get(0).moinVie(18,enemie.get(0).getRessistance());player.get(emplacement1).soigner(50);}
             action.setText("Vous avez trouver sont point faible\n et vous avez gagner de la vie");

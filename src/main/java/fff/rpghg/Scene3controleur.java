@@ -331,7 +331,7 @@ public class Scene3controleur implements Initializable {
             if(jo.size()==0){next=true;}
 
         }
-        if (Enemy.size() == 0 && E <1 ) {                     //E = nombre de parties
+        if (Enemy.size() == 0 && E <4 ) {                     //E = nombre de parties
             Enemy = game.enemyCréation(Player, E);
             E++;
             partieN.setText("Partie n° " + E);}    //codes enemies //nombre de partie
